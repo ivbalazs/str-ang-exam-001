@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-4 mt-2 mb-2 form-group form-inline">
+        <label for="name" class="mb-2 mt-2 mr-3">Keresés:</label>
+        <input id="name" [(ngModel)]="phrase" type="text" class="form-control" placeholder="név alapján">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <table class="table table-striped">
+            <thead data-toggle="tooltip" title="Sorba rendezés">
+                <tr>
+                    <th (click)="onSelect('id')">#
+                    </th>
+                    <th (click)="onSelect('name')">Name</th>
+                    <th (click)="onSelect('superPower')">Superpower</th>
+                    <th (click)="onSelect('address')">Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let hero of heroList$ | async | filter:'name':phrase | sorter:columnKey">
+                    <td>{{ hero.id }}</td>
+                    <td>{{ hero.name }}</td>
+                    <td>{{ hero.superPower }}</td>
+                    <td>{{ hero.address }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
